@@ -1,0 +1,20 @@
+﻿@inherits LayoutComponentBase
+
+<div class="page">
+
+    <main>
+        <article class="content px-4">
+            @Body
+        </article>
+
+        @* Required *@
+        <MudThemeProvider />
+        <MudPopoverProvider />
+
+        @* Needed for dialogs *@
+        <MudDialogProvider />
+
+        @* Needed for snackbars *@
+        <MudSnackbarProvider />
+    </main>
+</div>

@@ -1,0 +1,28 @@
+﻿@page "/"
+@layout Layout.LoginLayout
+
+@using Microsoft.AspNetCore.Components.Forms
+@using FinancePal.Models
+@using FinancePal.Services 
+@using MudBlazor
+@inject IAuthService AuthService
+@inject NavigationManager NavigationManager 
+
+<h3>Login</h3>
+
+@if (isNewUser) 
+{
+    <NewUserForm /> 
+}
+else
+{
+    <ExistingUserForm />
+}
+
+@code{
+    private bool isNewUser;
+    protected override void OnInitialized()
+    {
+        isNewUser = !AuthService.UserExists();
+    }
+}

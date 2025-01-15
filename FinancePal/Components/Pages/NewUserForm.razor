@@ -1,0 +1,25 @@
+﻿@using Microsoft.AspNetCore.Components.Forms
+@using FinancePal.Models
+@using FinancePal.Services 
+@using MudBlazor
+@inject IAuthService AuthService
+@inject NavigationManager NavigationManager 
+
+
+<EditForm Model="@user">
+    <MudTextField @bind-Value="@user.Username"> Username </MudTextField>
+    <MudTextField @bind-Value="@user.Password"> Password </MudTextField>
+    <MudSelect T="string" @bind-Value="@user.Currency"> Currency
+        @foreach (var currency in User.AvailableCurrencies)
+        {
+                <MudSelectItem Value="@currency">@currency</MudSelectItem>
+        }
+    </MudSelect> //User.cs ma specify garne currency kk hunu parcha vanera
+
+    <MudButton OnClick="@RegisterUser" Color="Primary" Variant="Filled">Register</MudButton>
+</EditForm>
+
+@code {
+    private User user = new User();
+    private List<string> currencies = new List<string>() { "NPR", "USD", "anyothercurrency" }
+}
